@@ -5,15 +5,27 @@ import SearchIcon from "../assets/icons/searchicon.svg";
 import styled from "@emotion/styled";
 
 const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 20px 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 1728px) {
+    padding: 20px 100px;
+  }
 `;
 
 const LogoImg = styled.img`
   width: 200px;
+
+  @media (max-width: 1728px) {
+    width: 150px;
+  }
 `;
 
 const NavContainer = styled.div`
@@ -23,10 +35,19 @@ const NavContainer = styled.div`
   font-size: 24px;
   font-family: "Pretendard";
   font-weight: 500;
+
+  @media (max-width: 1728px) {
+    font-size: 20px;
+    gap: 80px;
+  }
 `;
 
 const SearchIconContainer = styled.button`
   width: 36px;
+
+  @media (max-width: 1728px) {
+    width: 32px;
+  }
 `;
 const SearchIconImg = styled.img``;
 export default function Header() {

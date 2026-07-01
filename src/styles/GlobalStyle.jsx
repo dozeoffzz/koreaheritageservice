@@ -78,6 +78,7 @@ const globalStyles = css`
     transition:
       background-color 0.3s,
       color 0.3s;
+    font-family: "Pretendard";
   }
   ol,
   li ul {

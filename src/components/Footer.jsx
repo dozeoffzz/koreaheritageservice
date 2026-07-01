@@ -9,6 +9,10 @@ const FooterContainer = styled.footer`
   align-items: center;
   background-color: #0c0c0c;
   color: #fafafa;
+
+  @media (max-width: 1728px) {
+    padding: 40px 100px;
+  }
 `;
 
 const LogoImg = styled.img`
