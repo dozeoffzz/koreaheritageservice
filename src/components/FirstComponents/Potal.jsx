@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PotalImg from "../../assets/imgs/potalimg.png";
 
 const ComplaintContainer = styled.div`
   padding: 30px 50px;
@@ -9,8 +10,10 @@ const ComplaintContainer = styled.div`
   /* width: 494px; */
   height: 382px;
   gap: 33px;
-  border: 1px solid #82572d;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d930;
   border-radius: 30px;
+  background-image: url(${PotalImg});
 `;
 
 const TextWrap = styled.div`
@@ -25,12 +28,13 @@ const ComplaintText = styled.h3`
   font-weight: 600;
 `;
 
-const Text = styled.p`
+const Text = styled.div`
   font-size: 24px;
 `;
 
 const AroundBtn = styled(NavLink)`
-  padding: 20px 20px;
+  padding: 10px 20px;
+  width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;

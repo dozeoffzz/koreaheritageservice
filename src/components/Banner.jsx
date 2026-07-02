@@ -1,13 +1,23 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import BannerBackImg from "../assets/imgs/bannerbackimg.png";
+import Banner1 from "../assets/imgs/banner1.png";
+import BannerLeftIcon from "../assets/icons/bannerleft.svg";
+import BannerRightIcon from "../assets/icons/bannerright.svg";
+import { AllBanner } from "../apis/MokApis";
 
 const BannerContainer = styled.div`
+  padding: 0 200px;
+  width: 100%;
   display: flex;
+  background-image: url(${BannerBackImg});
 `;
 const BannerWrap = styled.div`
-  margin-top: 100px;
+  width: 100%;
+  margin-top: 130px;
   display: flex;
+  justify-content: space-between;
 `;
 const BannerLeft = styled.div`
   display: flex;
@@ -15,10 +25,9 @@ const BannerLeft = styled.div`
   gap: 100px;
 `;
 const TitleTextWrap = styled.div`
-  padding-left: 200px;
   display: flex;
-  justify-content: space-between;
-  /* gap: 100px; */
+  /* justify-content: space-between; */
+  gap: 100px;
 `;
 
 const TitleText = styled.h1`
@@ -43,7 +52,6 @@ const SubText = styled.div`
 `;
 
 const Pagenation = styled.div`
-  padding-left: 200px;
   display: flex;
   color: #82572d;
   align-items: center;
@@ -70,34 +78,52 @@ const CurrentPageBar = styled.div`
 
 const BannerImgWrap = styled.div`
   position: relative;
-  width: 600px;
-  /* height: 687px; */
+  display: flex;
+  justify-self: flex-end;
+  width: 1017px; /* 이미지 너비 */
+  height: 550px;
+  overflow: hidden;
+`;
+
+const BannerSlide = styled.div`
+  display: flex;
+  transform: translateX(${({ current }) => `-${current * 100}%`});
+  transition: transform 0.6s ease;
+`;
+
+const BannerImg = styled.img`
+  width: 100%;
+  flex: 0 0 100%;
+  height: 550px;
+  object-fit: cover;
 `;
 
 const BtnWrap = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: 30px;
   left: 40px;
   display: flex;
   gap: 10px;
 `;
 
-const AroundBtn = styled(NavLink)`
-  padding: 20px 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #82572d;
-  color: #fafafa;
-  font-size: 24px;
-`;
-
-const DigitalBtn = styled(AroundBtn)`
-  background-color: #0c0c0c70;
-  border: 1px solid #fafafa;
-`;
-
 export default function Banner() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % AllBanner.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const prevBanner = () => {
+    setCurrent((prev) => (prev === 0 ? AllBanner.length - 1 : prev - 1));
+  };
+
+  const nextBanner = () => {
+    setCurrent((prev) => (prev + 1) % AllBanner.length);
+  };
   return (
     <BannerContainer>
       <BannerWrap>
@@ -110,20 +136,20 @@ export default function Banner() {
               <p>대한민국의 국가유산</p>
             </SubText>
           </TitleTextWrap>
-          <Pagenation>
-            <p>01</p>
-            <PageNationBar>
-              <CurrentPageBar></CurrentPageBar>
-            </PageNationBar>
-            <p>02</p>
-            <p>03</p>
-          </Pagenation>
         </BannerLeft>
         <BannerImgWrap>
-          <img />
+          <BannerSlide current={current}>
+            {AllBanner.map((item) => (
+              <BannerImg key={item.id} src={item.img} alt={`banner-${item.id}`} />
+            ))}
+          </BannerSlide>
           <BtnWrap>
-            <AroundBtn>국가유산 둘러보기</AroundBtn>
-            <DigitalBtn>디지털 아카이브</DigitalBtn>
+            <button onClick={prevBanner}>
+              <img src={BannerLeftIcon} />
+            </button>
+            <button onClick={nextBanner}>
+              <img src={BannerRightIcon} />
+            </button>
           </BtnWrap>
         </BannerImgWrap>
       </BannerWrap>

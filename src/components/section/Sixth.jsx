@@ -1,0 +1,72 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { SixthApi } from "../../apis/MokApis";
+import styled from "@emotion/styled";
+
+const SixthContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 100px;
+`;
+
+const TitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Title = styled.h3`
+  font-size: 56px;
+  font-family: "Gungsuh";
+`;
+
+const CardContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Card = styled(NavLink)`
+  border-radius: 30px;
+  background-color: #d9d9d930;
+  border: 1px solid #d9d9d9;
+  width: 350px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+`;
+
+const CardText = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  white-space: pre-line;
+  gap: 10px;
+`;
+const CardTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 600;
+`;
+
+export default function Sixth() {
+  return (
+    <SixthContainer>
+      <TitleWrap>
+        <Title>국가유산 TV</Title>
+      </TitleWrap>
+      <CardContainer>
+        {SixthApi.map((item) => (
+          <Card key={item.id}>
+            <img src={item.img} alt={item.name} />
+            <CardText>
+              <CardTitle>{item.name}</CardTitle>
+              <p>{item.text}</p>
+            </CardText>
+          </Card>
+        ))}
+      </CardContainer>
+    </SixthContainer>
+  );
+}

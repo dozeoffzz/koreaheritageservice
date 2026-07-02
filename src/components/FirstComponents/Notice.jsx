@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const NoticeContainer = styled.div`
   padding: 30px 50px;
@@ -8,7 +9,8 @@ const NoticeContainer = styled.div`
   /* width: 494px; */
   height: 382px;
   gap: 33px;
-  border: 1px solid #82572d;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d930;
   border-radius: 30px;
 
   @media (max-width: 1728px) {
@@ -29,7 +31,7 @@ const MoreViewText = styled.button`
   color: #82572d;
   font-weight: 600;
 `;
-const MainNotice = styled.div`
+const MainNotice = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 15px;
@@ -48,7 +50,7 @@ const MainNoticeDate = styled.p`
   font-weight: 600;
 `;
 const MainNoticeYear = styled.p`
-  font-size: 20px;
+  font-size: 16px;
 `;
 const MainNoticeText = styled.p`
   font-size: 20px;
@@ -56,8 +58,8 @@ const MainNoticeText = styled.p`
   color: #82572d;
 `;
 const MainNoticeSubText = styled.p`
-  font-size: 20px;
-  color: #d9d9d9;
+  font-size: 16px;
+  color: #696969;
 `;
 
 const NextNoticewrap = styled.div`
@@ -65,7 +67,7 @@ const NextNoticewrap = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
-const NextNotice = styled.div`
+const NextNotice = styled(NavLink)`
   display: flex;
   gap: 20px;
 `;

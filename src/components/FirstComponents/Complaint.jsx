@@ -1,15 +1,19 @@
 import styled from "@emotion/styled";
 import React from "react";
+import ComplaintImg from "../../assets/imgs/complaintimg.png";
+import { NavLink } from "react-router-dom";
 
-const ComplaintContainer = styled.div`
+const ComplaintContainer = styled(NavLink)`
   padding: 30px 50px;
   display: flex;
   flex-direction: column;
   /* width: 494px; */
   height: 382px;
   gap: 33px;
-  border: 1px solid #82572d;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d930;
   border-radius: 30px;
+  background-image: url(${ComplaintImg});
 `;
 
 const ComplaintText = styled.h3`

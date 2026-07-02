@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/icons/logo.svg";
-import SearchIcon from "../assets/icons/searchicon.svg";
+import HambugerIcon from "../assets/icons/hambugericon.svg";
 import styled from "@emotion/styled";
 
 const HeaderContainer = styled.header`
@@ -14,6 +14,10 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  z-index: 999;
+
+  transform: translateY(${({ visible }) => (visible ? "0" : "-100%")});
+  transition: transform 0.3s ease;
 
   @media (max-width: 1728px) {
     padding: 20px 100px;
@@ -42,17 +46,50 @@ const NavContainer = styled.div`
   }
 `;
 
-const SearchIconContainer = styled.button`
-  width: 36px;
+const HambugerIconContainer = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0c0c0c;
+  width: 48px;
+  height: 48px;
 
   @media (max-width: 1728px) {
     width: 32px;
   }
 `;
-const SearchIconImg = styled.img``;
+const HambugerIconImg = styled.img`
+  width: 100%;
+`;
 export default function Header() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    let prevScroll = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll <= 0) {
+        // 맨 위에서는 항상 보이기
+        setVisible(true);
+      } else if (currentScroll > prevScroll) {
+        // 아래로 스크롤
+        setVisible(false);
+      } else {
+        // 위로 스크롤
+        setVisible(true);
+      }
+
+      prevScroll = currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <HeaderContainer>
+    <HeaderContainer visible={visible}>
       <NavLink to="/">
         <LogoImg src={Logo} alt="Logo" />
       </NavLink>
@@ -64,9 +101,9 @@ export default function Header() {
         <NavLink>행사 • 관람</NavLink>
         <NavLink>기관소개</NavLink>
       </NavContainer>
-      <SearchIconContainer>
-        <SearchIconImg src={SearchIcon} alt="search" />
-      </SearchIconContainer>
+      <HambugerIconContainer>
+        <HambugerIconImg src={HambugerIcon} alt="search" />
+      </HambugerIconContainer>
     </HeaderContainer>
   );
 }
