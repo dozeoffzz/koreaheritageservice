@@ -10,6 +10,10 @@ const FirstContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   margin: 50px 0;
   gap: 20px;
+
+  @media (max-width: 1728px) {
+    grid-template-columns: 1.3fr 1fr 1fr;
+  }
 `;
 
 export default function First() {

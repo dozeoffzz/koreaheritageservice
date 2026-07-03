@@ -55,7 +55,7 @@ const HambugerIconContainer = styled.button`
   height: 48px;
 
   @media (max-width: 1728px) {
-    width: 32px;
+    width: 48px;
   }
 `;
 const HambugerIconImg = styled.img`

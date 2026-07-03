@@ -17,13 +17,14 @@ const TitleWrap = styled.div`
 `;
 
 const Title = styled.h3`
-  font-size: 56px;
+  font-size: 36px;
   font-family: "Gungsuh";
 `;
 
 const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 `;
 
 const Card = styled(NavLink)`

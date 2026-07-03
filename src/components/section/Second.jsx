@@ -20,7 +20,7 @@ const TextWrap = styled.div`
   text-align: center;
 `;
 const SecondTitle = styled.h3`
-  font-size: 56px;
+  font-size: 36px;
   font-family: "Gungsuh";
 `;
 const SecondSub = styled.p`

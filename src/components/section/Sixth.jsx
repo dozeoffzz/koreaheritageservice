@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { SixthApi } from "../../apis/MokApis";
 import styled from "@emotion/styled";
+import BannerLeft from "../../assets/icons/bannerleft.svg";
+import BannerRight from "../../assets/icons/bannerright.svg";
 
 const SixthContainer = styled.div`
   display: flex;
@@ -17,13 +19,21 @@ const TitleWrap = styled.div`
 `;
 
 const Title = styled.h3`
-  font-size: 56px;
+  font-size: 36px;
   font-family: "Gungsuh";
 `;
 
+const MoreView = styled(NavLink)`
+  font-size: 20x;
+  color: #82572d;
+  font-weight: 600;
+`;
+
 const CardContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 `;
 
 const Card = styled(NavLink)`
@@ -36,6 +46,21 @@ const Card = styled(NavLink)`
   img {
     width: 100%;
   }
+`;
+
+const BannerLeftIcon = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  opacity: 0.8;
+`;
+const BannerRightIcon = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  opacity: 0.8;
 `;
 
 const CardText = styled.div`
@@ -55,6 +80,7 @@ export default function Sixth() {
     <SixthContainer>
       <TitleWrap>
         <Title>국가유산 TV</Title>
+        <MoreView>더보기 +</MoreView>
       </TitleWrap>
       <CardContainer>
         {SixthApi.map((item) => (
@@ -66,6 +92,12 @@ export default function Sixth() {
             </CardText>
           </Card>
         ))}
+        <BannerLeftIcon>
+          <img src={BannerLeft} />
+        </BannerLeftIcon>
+        <BannerRightIcon>
+          <img src={BannerRight} />
+        </BannerRightIcon>
       </CardContainer>
     </SixthContainer>
   );

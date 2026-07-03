@@ -12,6 +12,10 @@ const BannerContainer = styled.div`
   width: 100%;
   display: flex;
   background-image: url(${BannerBackImg});
+
+  @media (max-width: 1728px) {
+    padding: 0 100px;
+  }
 `;
 const BannerWrap = styled.div`
   width: 100%;
@@ -28,6 +32,9 @@ const TitleTextWrap = styled.div`
   display: flex;
   /* justify-content: space-between; */
   gap: 100px;
+  @media (max-width: 1728px) {
+    gap: 50px;
+  }
 `;
 
 const TitleText = styled.h1`
@@ -101,7 +108,7 @@ const BannerImg = styled.img`
 const BtnWrap = styled.div`
   position: absolute;
   bottom: 30px;
-  left: 40px;
+  right: 40px;
   display: flex;
   gap: 10px;
 `;
