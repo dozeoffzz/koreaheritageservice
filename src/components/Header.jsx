@@ -3,6 +3,13 @@ import { NavLink } from "react-router-dom";
 import Logo from "../assets/icons/logo.svg";
 import HambugerIcon from "../assets/icons/hambugericon.svg";
 import styled from "@emotion/styled";
+import NavFirst from "./NavComponets/NavFirst";
+import NavSecond from "./NavComponets/NavSecond";
+import NavThird from "./NavComponets/NavThird";
+import NavSix from "./NavComponets/NavSix";
+import NavFive from "./NavComponets/NavFive";
+import NavFourd from "./NavComponets/NavFourd";
+import NavAll from "./NavComponets/NavAll";
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -15,6 +22,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   width: 100%;
   z-index: 999;
+  background-color: #fafafa;
 
   transform: translateY(${({ visible }) => (visible ? "0" : "-100%")});
   transition: transform 0.3s ease;
@@ -37,8 +45,6 @@ const NavContainer = styled.div`
   align-items: center;
   gap: 100px;
   font-size: 24px;
-  font-family: "Pretendard";
-  font-weight: 500;
 
   @media (max-width: 1728px) {
     font-size: 20px;
@@ -46,11 +52,14 @@ const NavContainer = styled.div`
   }
 `;
 
+const MenuButton = styled.button`
+  font-weight: 600;
+`;
+
 const HambugerIconContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0c0c0c;
   width: 48px;
   height: 48px;
 
@@ -63,6 +72,21 @@ const HambugerIconImg = styled.img`
 `;
 export default function Header() {
   const [visible, setVisible] = useState(true);
+  const [openMenu, setOpenMenu] = useState(null);
+
+  const handleToggle = (menu) => {
+    setOpenMenu((prev) => (prev === menu ? null : menu));
+  };
+
+  const menuComponents = {
+    notice: <NavFirst />,
+    participation: <NavSecond />,
+    info: <NavThird />,
+    admin: <NavFourd />,
+    event: <NavFive />,
+    about: <NavSix />,
+    all: <NavAll />,
+  };
 
   useEffect(() => {
     let prevScroll = window.scrollY;
@@ -89,21 +113,29 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <HeaderContainer visible={visible}>
-      <NavLink to="/">
-        <LogoImg src={Logo} alt="Logo" />
-      </NavLink>
-      <NavContainer>
-        <NavLink>알림 • 소식</NavLink>
-        <NavLink>참여 • 민원</NavLink>
-        <NavLink>정보공개</NavLink>
-        <NavLink>행정정보</NavLink>
-        <NavLink>행사 • 관람</NavLink>
-        <NavLink>기관소개</NavLink>
-      </NavContainer>
-      <HambugerIconContainer>
-        <HambugerIconImg src={HambugerIcon} alt="search" />
-      </HambugerIconContainer>
-    </HeaderContainer>
+    <>
+      <HeaderContainer visible={visible}>
+        <NavLink to="/">
+          <LogoImg src={Logo} alt="Logo" />
+        </NavLink>
+        <NavContainer>
+          <MenuButton onClick={() => handleToggle("notice")}>알림 • 소식</MenuButton>
+
+          <MenuButton onClick={() => handleToggle("participation")}>참여 • 민원</MenuButton>
+
+          <MenuButton onClick={() => handleToggle("info")}>정보공개</MenuButton>
+
+          <MenuButton onClick={() => handleToggle("admin")}>행정정보</MenuButton>
+
+          <MenuButton onClick={() => handleToggle("event")}>행사 • 관람</MenuButton>
+
+          <MenuButton onClick={() => handleToggle("about")}>기관소개</MenuButton>
+        </NavContainer>
+        <HambugerIconContainer>
+          <HambugerIconImg src={HambugerIcon} alt="search" onClick={() => handleToggle("all")} />
+        </HambugerIconContainer>
+      </HeaderContainer>
+      {menuComponents[openMenu]}
+    </>
   );
 }

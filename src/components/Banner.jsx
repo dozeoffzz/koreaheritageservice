@@ -11,7 +11,6 @@ const BannerContainer = styled.div`
   padding: 0 200px;
   width: 100%;
   display: flex;
-  background-image: url(${BannerBackImg});
 
   @media (max-width: 1728px) {
     padding: 0 100px;

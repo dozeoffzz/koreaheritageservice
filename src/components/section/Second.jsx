@@ -75,7 +75,7 @@ export default function Second() {
     <SecondSection>
       <TextWrap>
         <SecondTitle>대한민국의 유산을 만나다</SecondTitle>
-        <SecondSub>천년의 역사와 문화를 디지털로 경험해보세요</SecondSub>
+        <SecondSub>천년의 역사와 문화를 경험해보세요</SecondSub>
       </TextWrap>
       <CardContainer>
         <WorldHeritage>
