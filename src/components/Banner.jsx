@@ -8,17 +8,17 @@ import BannerRightIcon from "../assets/icons/bannerright.svg";
 import { AllBanner } from "../apis/MokApis";
 
 const BannerContainer = styled.div`
-  padding: 0 200px;
+  padding: 20px 200px;
   width: 100%;
   display: flex;
-
+  background: url(${BannerBackImg});
   @media (max-width: 1728px) {
     padding: 0 100px;
   }
 `;
 const BannerWrap = styled.div`
   width: 100%;
-  margin-top: 130px;
+  margin-top: 110px;
   display: flex;
   justify-content: space-between;
 `;
@@ -34,6 +34,21 @@ const TitleTextWrap = styled.div`
   @media (max-width: 1728px) {
     gap: 50px;
   }
+`;
+const GoButtonWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const GoBtn = styled(NavLink)`
+  border: 1px solid #d9d9d9;
+  background-color: #82582dc7;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  border-radius: 15px;
+  color: #fafafa;
 `;
 
 const TitleText = styled.h1`
@@ -89,6 +104,7 @@ const BannerImgWrap = styled.div`
   width: 1017px; /* 이미지 너비 */
   height: 550px;
   overflow: hidden;
+  border-radius: 30px;
 `;
 
 const BannerSlide = styled.div`
@@ -142,6 +158,10 @@ export default function Banner() {
               <p>대한민국의 국가유산</p>
             </SubText>
           </TitleTextWrap>
+          <GoButtonWrap>
+            <GoBtn>누리집 안내지도</GoBtn>
+            <GoBtn>국가 상징 알아보기</GoBtn>
+          </GoButtonWrap>
         </BannerLeft>
         <BannerImgWrap>
           <BannerSlide current={current}>

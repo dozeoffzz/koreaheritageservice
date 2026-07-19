@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const NavContainer = styled.div`
   display: flex;
   position: fixed;
-  top: 80px;
+  top: 100px;
   left: 0;
   z-index: 998;
 
